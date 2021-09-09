@@ -20,7 +20,7 @@ const ChatRoom = (props) => {
     startTypingMessage,
     stopTypingMessage,
   } = useChat(roomId);
-  const [newMessage, setNewMessage] = useState("");
+  const [newMessage, setNewMessage] = useState('');
 
   const { isTyping, startTyping, stopTyping, cancelTyping } = useTyping();
 
@@ -31,7 +31,11 @@ const ChatRoom = (props) => {
   const handleSendMessage = (event) => {
     event.preventDefault();
     cancelTyping();
-    sendMessage(newMessage);
+    const message = {
+      messageBody: newMessage,
+      isSystem: false
+    };
+    sendMessage(message);
     setNewMessage("");
   };
 

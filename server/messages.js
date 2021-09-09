@@ -1,4 +1,4 @@
-var uuid = require("uuid");
+const uuid = require("uuid");
 
 const messages = [];
 

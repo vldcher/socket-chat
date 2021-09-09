@@ -70,12 +70,22 @@ const useChat = (roomId) => {
     socketRef.current.on(USER_JOIN_CHAT_EVENT, (user) => {
       if (user.id === socketRef.current.id) return;
       setUsers((users) => [...users, user]);
-      sendMessage('joined', true)
+      const message = {
+        messageBody: 'joined',
+        isSystem: true,
+        systemUser: user,
+      }
+      sendMessage(message);
     });
 
     socketRef.current.on(USER_LEAVE_CHAT_EVENT, (user) => {
       setUsers((users) => users.filter((u) => u.id !== user.id));
-      sendMessage('leave the chat', true)
+      const message = {
+        messageBody: 'leave the chat',
+        isSystem: true,
+        systemUser: user,
+      }
+      sendMessage(message);
     });
 
     socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, (message) => {
@@ -105,12 +115,13 @@ const useChat = (roomId) => {
     };
   }, [roomId, user]);
 
-  const sendMessage = (messageBody, isSystem) => {
+  const sendMessage = (message) => {
+    const {messageBody, isSystem, systemUser} = message;
     if (!socketRef.current) return;
     socketRef.current.emit(NEW_CHAT_MESSAGE_EVENT, {
       body: messageBody,
       senderId: isSystem ? 'system' : socketRef.current.id,
-      user: user,
+      user: systemUser || user,
     });
   };
 
