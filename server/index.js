@@ -34,6 +34,17 @@ io.on("connection", (socket) => {
   const user = addUser(socket.id, roomId, name, picture);
   io.in(roomId).emit(USER_JOIN_CHAT_EVENT, user);
 
+
+  const joinedMessage = {
+    body: `${user.name} has joined the chat`,
+    senderId: 'system',
+    user: user,
+  };
+  const message = addMessage(roomId, joinedMessage);
+
+  //displays a joined room message to all other room users except that particular user
+  socket.broadcast.to(roomId).emit(NEW_CHAT_MESSAGE_EVENT, message);
+
   // Listen for new messages
   socket.on(NEW_CHAT_MESSAGE_EVENT, (data) => {
     const message = addMessage(roomId, data);
@@ -53,6 +64,14 @@ io.on("connection", (socket) => {
     removeUser(socket.id);
     io.in(roomId).emit(USER_LEAVE_CHAT_EVENT, user);
     socket.leave(roomId);
+
+    const byeMessage = {
+      body: `${user.name} leave the chat`,
+      senderId: 'system',
+      user: user,
+    };
+    const message = addMessage(roomId, byeMessage);
+    socket.broadcast.to(roomId).emit(NEW_CHAT_MESSAGE_EVENT, message);
   });
 });
 

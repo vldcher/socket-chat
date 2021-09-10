@@ -11,7 +11,7 @@ const ChatMessage = ({ message }) => {
               ?
               <div className="message-item system-message">
                   <div className="message-body-container">
-                      {message?.user.name} {message?.body}
+                      {message?.body}
                   </div>
               </div>
               :

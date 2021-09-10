@@ -70,22 +70,10 @@ const useChat = (roomId) => {
     socketRef.current.on(USER_JOIN_CHAT_EVENT, (user) => {
       if (user.id === socketRef.current.id) return;
       setUsers((users) => [...users, user]);
-      const message = {
-        messageBody: 'joined',
-        isSystem: true,
-        systemUser: user,
-      }
-      sendMessage(message);
     });
 
     socketRef.current.on(USER_LEAVE_CHAT_EVENT, (user) => {
       setUsers((users) => users.filter((u) => u.id !== user.id));
-      const message = {
-        messageBody: 'leave the chat',
-        isSystem: true,
-        systemUser: user,
-      }
-      sendMessage(message);
     });
 
     socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, (message) => {
