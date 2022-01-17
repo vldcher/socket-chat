@@ -5,6 +5,8 @@ import CheckButton from "react-validation/build/button";
 
 import AuthService from "../../services/auth-service";
 
+import './Login.css';
+
 const required = (value) => {
     if (!value) {
         return (
@@ -66,8 +68,9 @@ const Login = (props) => {
     };
 
     return (
-        <div className="col-md-12">
-            <div className="card card-container">
+        <div className="flex-container">
+            <h2>Login</h2>
+            <div className="login-content">
                 <img
                     src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
                     alt="profile-img"

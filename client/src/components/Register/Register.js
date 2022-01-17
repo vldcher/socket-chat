@@ -3,6 +3,7 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
+import './Register.css';
 
 import AuthService from "../../services/auth-service";
 
@@ -83,6 +84,7 @@ const Register = (props) => {
             AuthService.register(username, email, password).then(
                 (response) => {
                     setMessage(response.data.message);
+                    console.log('1')
                     setSuccessful(true);
                 },
                 (error) => {
@@ -101,8 +103,9 @@ const Register = (props) => {
     };
 
     return (
-        <div className="col-md-12">
-            <div className="card card-container">
+        <div className="flex-container">
+            <h2>Register</h2>
+            <div className="register-content">
                 <img
                     src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
                     alt="profile-img"

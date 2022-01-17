@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import "./Home.css";
 
-const Home = () => {
+const ChatHome = () => {
   const [roomName, setRoomName] = useState("");
 
   const handleRoomNameChange = (event) => {
@@ -26,4 +26,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default ChatHome;

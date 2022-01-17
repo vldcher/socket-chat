@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 import "./ChatRoom.css";
-import useChat from "../useChat";
+import useChat from "../../useChat";
 import ChatMessage from "../ChatMessage/ChatMessage";
-import useTyping from "../useTyping";
+import useTyping from "../../useTyping";
 import NewMessageForm from "../NewMessageForm/NewMessageForm";
 import TypingMessage from "../TypingMessage/TypingMessage";
 import Users from "../Users/Users";
