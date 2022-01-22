@@ -1,16 +1,15 @@
 import React from "react";
 import "./UserAvatar.css";
+import defaultIcon from '../../images/defaultUserIcon.jpg';
 
 const UserAvatar = ({ user }) => {
   return (
-    <>
       <img
-        src={user?.picture}
-        alt={user?.name}
-        title={user?.name}
-        className={"avatar"}
-      ></img>
-    </>
+    src={defaultIcon}
+    alt={user?.name}
+    title={user?.name}
+    className={"avatar"}
+    />
   );
 };
 

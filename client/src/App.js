@@ -21,6 +21,7 @@ import { clearMessage } from "./redux/actions/message";
 // helpers
 import EventBus from "./helpers/EventBus";
 import { history } from "./helpers/history";
+import ChatRoom from "./Chat/ChatRoom/ChatRoom";
 
 const App = () => {
     const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -123,12 +124,10 @@ const App = () => {
                         <Route path="/user" component={BoardUser} />
                         <Route path="/admin" component={BoardAdmin} />
 
-                        {/*<Route exact path="/:roomId" component={ChatRoom} />*/}
+                        <Route exact path="/:roomId" component={ChatRoom} />
 
                     </Switch>
                 </div>
-
-                {/* <AuthVerify logOut={logOut}/> */}
             </div>
         </Router>
     );

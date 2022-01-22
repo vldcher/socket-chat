@@ -2,6 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import socketIOClient from "socket.io-client";
 import axios from "axios";
 
+// services
+import AuthService from "./services/auth-service";
+
+// socket actions
 const USER_JOIN_CHAT_EVENT = "USER_JOIN_CHAT_EVENT";
 const USER_LEAVE_CHAT_EVENT = "USER_LEAVE_CHAT_EVENT";
 const NEW_CHAT_MESSAGE_EVENT = "NEW_CHAT_MESSAGE_EVENT";
@@ -18,16 +22,11 @@ const useChat = (roomId) => {
 
 
   useEffect(() => {
-    const fetchUser = async () => {
-      const response = await axios.get("https://api.randomuser.me/");
-      const result = response.data.results[0];
-      setUser({
-        name: result.name.first,
-        picture: result.picture.thumbnail,
-      });
-    };
+    const currentUser = AuthService.getCurrentUser();
+    setUser({
+      name: currentUser.username,
+    });
 
-    fetchUser();
   }, []);
 
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import "./Home.css";
+import "./ChatHome.css";
 
 const ChatHome = () => {
   const [roomName, setRoomName] = useState("");
@@ -20,7 +20,7 @@ const ChatHome = () => {
         className="text-input-field"
       />
       <Link to={`/${roomName}`} className="enter-room-button">
-        Log in
+        Go to room
       </Link>
     </div>
   );
